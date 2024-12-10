@@ -38,6 +38,7 @@ pipeline {
                     --prettyPrint''', odcInstallation: 'dependency-check-11.0.0'
         
         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
       }
     }
     }
