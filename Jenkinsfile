@@ -17,7 +17,19 @@ pipeline {
                 sh 'npm install --no-audit'
             }
         }
-        stage('OWASP Dependency-Check Vulnerabilities') {
+        stage('Dependency_Audit') {
+            steps{
+                sh '''
+                npm audit --audit-level=critical
+                if [ $? -eq 0 ]; then
+                    echo "No critical vulnerabilities found."
+                else
+                    echo "Please fix the critical vulnerabilities found in dependency audit."
+                fi
+                '''
+            }
+        }
+        stage('OWASP Dependency-Check-Vulnerabilities') {
       steps {
         dependencyCheck additionalArguments: ''' 
                     -o './'
