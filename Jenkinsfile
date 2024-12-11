@@ -4,7 +4,7 @@ pipeline {
         MONGO_URI = "mongodb+srv://supercluster.d83jj.mongodb.net/superData"
     }
     tools {
-        nodejs 'nodejs-20-14-0'
+        nodejs 'nodejs-23-3-0'
     }
     stages {
         stage('Node_Version') {
