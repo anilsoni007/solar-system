@@ -18,8 +18,8 @@ describe('Planets API Suite', function () {
     await mongoose.connect(mongoUri, {
       user: mongoUsername,
       pass: mongoPassword,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useNewUrlParser: false,
+      useUnifiedTopology: false,
     }).catch((err) => {
       console.log('Error connecting to MongoDB:', err);
     });
