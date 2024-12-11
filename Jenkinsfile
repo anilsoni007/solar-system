@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        MONGO_URI = ""mongodb+srv://supercluster.d83jj.mongodb.net/superData""
+    }
     tools {
         nodejs 'nodejs-22-9-0'
     }
@@ -24,7 +27,7 @@ pipeline {
                 if [ $? -eq 0 ]; then
                     echo "No critical vulnerabilities found."
                 else
-                    echo "Please fix the critical vulnerabilities found in dependency audit."
+                    echo "Please fix the critical vulnerabilities found in dependency audit...."
                 fi
                 '''
             }
@@ -39,7 +42,15 @@ pipeline {
         
         dependencyCheckPublisher pattern: 'dependency-check-report.xml'
         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
       }
+    }
+    stage('Unit_Test'){
+        steps{
+            withCredentials([usernamePassword(credentialsId: 'mongo-db-cred', passwordVariable: 'MONGO_PASSWORD', usernameVariable: 'MONGO_USERNAME')]) {
+                sh 'npm test'
+            }             
+        }
     }
     }
 }
