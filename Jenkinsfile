@@ -27,7 +27,7 @@ pipeline {
                 if [ $? -eq 0 ]; then
                     echo "No critical vulnerabilities found."
                 else
-                    echo "Please fix the critical vulnerabilities found in dependency audit...."
+                    echo "Please fix the critical vulnerabilities found in dependency audit......"
                 fi
                 '''
             }
