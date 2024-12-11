@@ -14,18 +14,19 @@ app.use(cors());
 
 // Use environment variables passed at runtime
 mongoose.connect(process.env.MONGO_URI, {
-  user: process.env.MONGO_USERNAME,
-  pass: process.env.MONGO_PASSWORD,
-  useNewUrlParser: false,
-  useUnifiedTopology: false
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  user: process.env.MONGO_USERNAME,  // Ensure that the correct username is being used
+  pass: process.env.MONGO_PASSWORD,  // Ensure that the correct password is being used
+  authSource: 'admin',              // Specify the authentication source if required
 }, function(err) {
   if (err) {
     console.log("Error connecting to MongoDB:", err);
   } else {
-    // MongoDB connection is successful
-    // console.log("MongoDB Connection Successful");
+    console.log("MongoDB Connection Successful");
   }
 });
+
 
 // Define the schema and model
 var Schema = mongoose.Schema;
