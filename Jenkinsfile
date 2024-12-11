@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        MONGO_URI = ""mongodb+srv://supercluster.d83jj.mongodb.net/superData""
+        MONGO_URI = "mongodb+srv://supercluster.d83jj.mongodb.net/superData"
     }
     tools {
         nodejs 'nodejs-22-9-0'
