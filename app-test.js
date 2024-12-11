@@ -2,10 +2,6 @@ let mongoose = require("mongoose");
 let server = require("./app");
 let chai = require("chai");
 let chaiHttp = require("chai-http");
-let dotenv = require("dotenv");
-
-// Load environment variables
-dotenv.config();
 
 // Assertion 
 chai.should();
@@ -19,15 +15,14 @@ describe('Planets API Suite', function () {
     const mongoPassword = process.env.MONGO_PASSWORD; // Password passed at runtime
     
     // Connect to the MongoDB instance passed during runtime
-    try {
-      await mongoose.connect(mongoUri, {
-        user: mongoUsername,
-        pass: mongoPassword
-      });
-      console.log("MongoDB connected successfully.");
-    } catch (err) {
+    await mongoose.connect(mongoUri, {
+      user: mongoUsername,
+      pass: mongoPassword,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }).catch((err) => {
       console.log('Error connecting to MongoDB:', err);
-    }
+    });
   });
 
   // Clean up after all tests
@@ -37,7 +32,6 @@ describe('Planets API Suite', function () {
 
   // Reset database before each test
   beforeEach(async function () {
-    // Drop the database to ensure clean state for every test
     await mongoose.connection.dropDatabase();
   });
 
