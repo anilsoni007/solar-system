@@ -8,7 +8,6 @@ pipeline {
     }
     tools {
         nodejs 'nodejs-23-3-0'
-        tool name SonarQube Scanner 'sq-scanner'
         
     }
     stages {
