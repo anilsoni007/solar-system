@@ -6,7 +6,7 @@ pipeline {
         MONGO_DB_CREDS = credentials('mongo-db-cred')
         MONGO_USERNAME = "${MONGO_DB_CREDS_USR}"
         MONGO_PASSWORD = "${MONGO_DB_CREDS_PSW}"
-        SONAR_SCANNER_HOME = tool 'sq-6';
+        
     }
     tools {
         nodejs 'nodejs-23-3-0'
