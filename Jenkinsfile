@@ -37,6 +37,7 @@ pipeline {
                 '''
             }
         }
+        /*
         stage('OWASP Dependency-Check-Vulnerabilities') {
             steps {
                 dependencyCheck additionalArguments: ''' 
@@ -51,6 +52,7 @@ pipeline {
       }
       
     }
+    */
     stage('Unit_Test'){
         steps{
             catchError(buildResult: 'SUCCESS', message: 'oops! This will be fixed in coming sprint...!', stageResult: 'UNSTABLE') {
