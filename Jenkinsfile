@@ -67,8 +67,7 @@ pipeline {
     } 
     stage('SAST-SQAnalysis') {
     steps {
-        withSonarQubeEnv('sq-6') {
-            withCredentials('sonar-qube-scanner') {
+        withSonarQubeEnv('sonar-qube-scanner') {
                 sh """
                     sonar-scanner \
                         -Dsonar.projectKey=solar-project \
@@ -76,7 +75,6 @@ pipeline {
                         -Dsonar.host.url=http://65.2.168.85:9000 \
                         -Dsonar.token=${sq-token}
                 """
-        }
     }
 }
 
