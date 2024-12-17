@@ -8,7 +8,7 @@ pipeline {
     }
     tools {
         nodejs 'nodejs-23-3-0'
-        SonarQube Scanner 'sq-scanner'
+        tool name SonarQube Scanner 'sq-scanner'
         
     }
     stages {
@@ -65,6 +65,7 @@ pipeline {
     stage('SAST-SQAnalysis'){
         steps {
             sh '''
+            tool name: 'sq-6', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             sonar-scanner \
                 -Dsonar.projectKey=solar-project \
                 -Dsonar.sources=. \
