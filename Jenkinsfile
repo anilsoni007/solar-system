@@ -71,7 +71,7 @@ pipeline {
         }
     stage ('Build-Image') {
         steps{
-            sh 'docker build -t asoni007/nodejs-solar:$GIT_COMMIT'
+            sh 'docker build -t asoni007/nodejs-solar:$GIT_COMMIT .'
         }
     }
     }
