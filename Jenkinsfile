@@ -43,8 +43,8 @@ pipeline {
                             --prettyPrint''', odcInstallation: 'dependency-check-11.0.0'
                 
                 dependencyCheckPublisher pattern: 'dependency-check-report.xml'
-                publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-                junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
+                
+                
       }
       
     }
@@ -57,13 +57,17 @@ pipeline {
                 sh 'npm test'
                 
             }
-            junit allowEmptyResults: true, stdioRetention: '', testResults: 'test-results.xml'             
+                        
         } 
     } 
  }
  post {
     always {
-        sh "echo hello world"
+        junit allowEmptyResults: true, stdioRetention: '', testResults: 'test-results.xml' 
+        junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
+
+        publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+        
     }
  }
 }
