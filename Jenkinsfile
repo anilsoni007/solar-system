@@ -9,6 +9,7 @@ pipeline {
     }
     tools {
         nodejs 'nodejs-23-3-0'
+
         
     }
     stages {
@@ -66,7 +67,7 @@ pipeline {
         steps {
             withSonarQubeEnv('sq-6') {
             sh '''
-            ${sonarScannerHome}/bin/sonar-scanner \
+            sonar-scanner \
                 -Dsonar.projectKey=solar-project \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=http://65.2.168.85:9000 \
