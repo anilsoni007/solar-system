@@ -75,10 +75,10 @@ pipeline {
                         -Dsonar.host.url=http://65.2.168.85:9000 \
                         -Dsonar.token=${sq-token}
                 """
-    }
-}
+            }
+       }
 
- }
+    }
  post {
     always {
         junit allowEmptyResults: true, stdioRetention: '', testResults: 'test-results.xml' 
@@ -87,6 +87,7 @@ pipeline {
         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
 
     }
+ }
  }
 }
 
