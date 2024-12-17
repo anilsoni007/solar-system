@@ -59,6 +59,11 @@ pipeline {
             }
             junit allowEmptyResults: true, stdioRetention: '', testResults: 'test-results.xml'             
     } 
-}
+} 
+    post {
+        always {
+            sh "echo hello world"
+        }
+    }
     }
 }
