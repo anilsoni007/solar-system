@@ -3,8 +3,8 @@ pipeline {
      environment {
         MONGO_URI = "mongodb+srv://supercluster.d83jj.mongodb.net/superData"
         MONGO_DB_CREDS = credentials('mongo-db-cred')
-        MONGO_USERNAME = MONGO_DB_CREDS_USR
-        MONGO_PASSWORD = MONGO_DB_CREDS_PSW
+        MONGO_USERNAME = $MONGO_DB_CREDS_USR
+        MONGO_PASSWORD = $MONGO_DB_CREDS_PSW
     }
     tools {
         nodejs 'nodejs-23-3-0'
