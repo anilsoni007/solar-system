@@ -6,7 +6,6 @@ pipeline {
         MONGO_DB_CREDS = credentials('mongo-db-cred')
         MONGO_USERNAME = "${MONGO_DB_CREDS_USR}"
         MONGO_PASSWORD = "${MONGO_DB_CREDS_PSW}"
-        SONAR_SCANNER_HOME = tool 'sq-6';
     }
     tools {
         nodejs 'nodejs-23-3-0'
@@ -69,15 +68,14 @@ pipeline {
     stage('SAST-SQAnalysis') {
     steps {
         withSonarQubeEnv('sq-6') {
-            withCredentials([string(credentialsId: 'sq-token', variable: 'SONAR_TOKEN')]) {
+            withCredentials('sonar-qube-scanner') {
                 sh """
                     sonar-scanner \
                         -Dsonar.projectKey=solar-project \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://65.2.168.85:9000 \
-                        -Dsonar.token=${SONAR_TOKEN}
+                        -Dsonar.token=${sq-token}
                 """
-            }
         }
     }
 }
