@@ -65,19 +65,22 @@ pipeline {
                         
         } 
     } 
-    stage('SAST-SQAnalysis'){
-        steps {
-            withSonarQubeEnv('sq-6') {
-            sh '''
-            sonar-scanner \
-                -Dsonar.projectKey=solar-project \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=http://65.2.168.85:9000 \
-                -Dsonar.token=sqp_a168ad6e8aab725a59631761c30ecf9fc2545d24
-            '''
-        }
+    stage('SAST-SQAnalysis') {
+    steps {
+        withSonarQubeEnv('sq-6') {
+            withCredentials([string(credentialsId: 'sq-token', variable: 'SONAR_TOKEN')]) {
+                sh """
+                    sonar-scanner \
+                        -Dsonar.projectKey=solar-project \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://65.2.168.85:9000 \
+                        -Dsonar.token=${SONAR_TOKEN}
+                """
+            }
         }
     }
+}
+
  }
  post {
     always {
