@@ -10,7 +10,6 @@ pipeline {
     }
     tools {
         nodejs 'nodejs-23-3-0'
-        sonar 'sq-6'
         }
     stages {
         stage('Node_Version') {
