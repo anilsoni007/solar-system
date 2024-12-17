@@ -1,4 +1,5 @@
 pipeline {
+    def sonarScannerHome = tool name: 'sq-6', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     agent any
      environment {
         MONGO_URI = "mongodb+srv://supercluster.d83jj.mongodb.net/superData"
@@ -63,7 +64,7 @@ pipeline {
     } 
     stage('SAST-SQAnalysis'){
         steps {
-            def sonarScannerHome = tool name: 'sq-6', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+            
             sh '''
             ${sonarScannerHome}/bin/sonar-scanner \
                 -Dsonar.projectKey=solar-project \
