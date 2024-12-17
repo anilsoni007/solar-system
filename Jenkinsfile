@@ -63,9 +63,9 @@ pipeline {
     } 
     stage('SAST-SQAnalysis'){
         steps {
+            def sonarScannerHome = tool name: 'sq-6', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
             sh '''
-            tool name: 'sq-6', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-            sonar-scanner \
+            ${sonarScannerHome}/bin/sonar-scanner \
                 -Dsonar.projectKey=solar-project \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=http://65.2.168.85:9000 \
