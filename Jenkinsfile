@@ -62,11 +62,13 @@ pipeline {
     } 
     stage('SAST-SQAnalysis'){
         steps {
+            sh '''
             sonar-scanner \
                 -Dsonar.projectKey=solar-project \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=http://65.2.168.85:9000 \
                 -Dsonar.token=sqp_a168ad6e8aab725a59631761c30ecf9fc2545d24
+            '''
         }
     }
  }
