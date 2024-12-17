@@ -60,6 +60,15 @@ pipeline {
                         
         } 
     } 
+    stage('SAST-SQAnalysis'){
+        steps {
+            sonar-scanner \
+                -Dsonar.projectKey=solar-project \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://65.2.168.85:9000 \
+                -Dsonar.token=sqp_a168ad6e8aab725a59631761c30ecf9fc2545d24
+        }
+    }
  }
  post {
     always {
@@ -67,7 +76,7 @@ pipeline {
         junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
 
         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-        
+
     }
  }
 }
