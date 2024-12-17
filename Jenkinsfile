@@ -8,6 +8,7 @@ pipeline {
     }
     tools {
         nodejs 'nodejs-23-3-0'
+        tool name: 'sq-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
     stages {
         stage('Node_Version') {
