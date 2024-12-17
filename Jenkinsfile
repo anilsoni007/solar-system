@@ -9,9 +9,7 @@ pipeline {
     }
     tools {
         nodejs 'nodejs-23-3-0'
-
-        
-    }
+        }
     stages {
         stage('Node_Version') {
             steps {
@@ -75,9 +73,9 @@ pipeline {
                         -Dsonar.host.url=http://65.2.168.85:9000 \
                         -Dsonar.token=${sq-token}
                 """
+                }
             }
-       }
-
+        }
     }
  post {
     always {
@@ -85,10 +83,9 @@ pipeline {
         junit allowEmptyResults: true, stdioRetention: '', testResults: 'dependency-check-junit.xml'
 
         publishHTML([allowMissing: true, alwaysLinkToLastBuild: true, keepAll: true, reportDir: './', reportFiles: 'dependency-check-report.html', reportName: 'Dependency Check HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-
+        }
     }
- }
- }
 }
+
 
 
