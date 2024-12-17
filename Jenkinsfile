@@ -67,15 +67,14 @@ pipeline {
     } 
     stage('SAST-SQAnalysis') {
     steps {
-        withSonarQubeEnv('sonar-qube-scanner') {
-                sh """
-                    sonar-scanner \
-                        -Dsonar.projectKey=solar-project \
-                        -Dsonar.sources=app.js \
-                """
-                }
+        echo "coming soon!!"
             }
         }
+    stage ('Build-Image') {
+        steps{
+            sh 'docker build -t asoni007/nodejs-solar:$GIT_COMMIT'
+        }
+    }
     }
  post {
     always {
