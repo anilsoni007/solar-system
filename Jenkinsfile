@@ -78,17 +78,17 @@ pipeline {
         steps{
             
             sh '''
-               trivy image asoni007/nodejs-solar:$GIT_COMMIT \
-               --severity LOW,MEDIUM,HIGH \
-               --exit-code 0 \
-               --quiet \
-               --format json -o trivy-image-MEDIUM-results.json
+               trivy image  \
+                   --severity LOW,MEDIUM,HIGH \
+                   --exit-code 0 \
+                   --format json -o trivy-image-MEDIUM-results.json \
+                   asoni007/nodejs-solar:$GIT_COMMIT
 
-               trivy image asoni007/nodejs-solar:$GIT_COMMIT \
-               --severity CRITICAL \
-               --exit-code 0 \
-               --quiet \
-               --format json -o trivy-image-CRITICAL-results.json
+               trivy image  \
+                   --severity CRITICAL \
+                   --exit-code 0 \
+                   --format json -o trivy-image-CRITICAL-results.json \
+                   asoni007/nodejs-solar:$GIT_COMMIT
             '''  
 
         }
