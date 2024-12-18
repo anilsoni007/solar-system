@@ -76,7 +76,7 @@ pipeline {
     }
     stage('Trivy-Vulnerability-Scanner'){
         steps{
-            script {
+            
             sh '''
                trivy image asoni007/nodejs-solar:$GIT_COMMIT \
                --severity LOW,MEDIUM,HIGH \
@@ -89,8 +89,7 @@ pipeline {
                --exit-code 0 \
                --quiet \
                --format json -o trivy-image-CRITICAL-results.json
-            '''
-            }   
+            '''  
 
         }
         post {
