@@ -95,6 +95,7 @@ pipeline {
         }
         post {
             always {
+                sh '''
                 trivy convert \
                     --format template --template "@/usr/local/share/trivy/templates/html.tpl" \
                         --output trivy-image-MEDIUM-results.html trivy-image-MEDIUM-results.json 
@@ -110,6 +111,7 @@ pipeline {
                 trivy convert \
                     --format template --template "@/usr/local/share/trivy/templates/junit.tpl" \
                     --output trivy-image-CRITICAL-results.xml trivy-image-CRITICAL-results.json 
+            '''
             }
         }
     }
