@@ -76,7 +76,6 @@ pipeline {
     }
     stage('Trivy-Vulnerability-Scanner'){
         steps{
-            
             sh '''
                trivy image  \
                    --severity LOW,MEDIUM,HIGH \
@@ -95,10 +94,10 @@ pipeline {
     }
     stage("Publish-Image"){
         steps{
-            withDockerRegistry(credentialsId: 'DOCKER_CRED') {
+            withDockerRegistry(credentialsId: 'DOCKER_CRED',url: '') {
                 sh 'docker push asoni007/nodejs-solar:$GIT_COMMIT'
     
-    }
+            }
         }
     }
     }
