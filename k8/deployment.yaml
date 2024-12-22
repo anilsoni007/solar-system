@@ -16,7 +16,7 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: sidharth67/solar-system:v3
+      - image: asoni007/nodejs-solar:1ff07ded6eded24a101bb32efa1fb8acfdacc33a
         imagePullPolicy: Always
         name: solar-system
         ports:
