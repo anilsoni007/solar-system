@@ -6,7 +6,7 @@ metadata:
   name: solar-system
   namespace: machina-sbx
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: solar-system
@@ -16,7 +16,7 @@ spec:
         app: solar-system
     spec:
       containers:
-      - image: asoni007/nodejs-solar:1ff07ded6eded24a101bb32efa1fb8acfdacc33a
+      - image: sidharth67/solar-system:v3
         imagePullPolicy: Always
         name: solar-system
         ports:
